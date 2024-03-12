@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "251462702127",
+    "project_id": "apni-dukan-62500",
+    "storage_bucket": "apni-dukan-62500.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251462702127:android:59158cf47fe69435c2e2da",
+        "android_client_info": {
+          "package_name": "com.example.bloc_demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCnwdkwQS23UhIIRmn7BxoNXURbThtgmQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
