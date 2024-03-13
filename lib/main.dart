@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(393, 873),
+      designSize: const Size(392.7, 872.7),
       child: MaterialApp(
         title: "Apni Dukan",
         // ignore: unnecessary_new

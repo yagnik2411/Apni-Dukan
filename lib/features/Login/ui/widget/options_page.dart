@@ -1,9 +1,11 @@
+import 'package:apni_dukan/features/Login/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OptionPage extends StatelessWidget {
+  final LoginBloc loginBloc ;
   const OptionPage({
-    super.key,
+    super.key, required this.loginBloc,
   });
 
   @override
@@ -46,7 +48,9 @@ class OptionPage extends StatelessWidget {
               width: 300.w,
               height: 50.h,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  loginBloc.add(LoginLoginButtonClickedEvent());
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal.shade300,
                   shape: RoundedRectangleBorder(
@@ -68,7 +72,9 @@ class OptionPage extends StatelessWidget {
               width: 300.w,
               height: 50.h,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                   loginBloc.add(LoginRegisterButtonClickedEvent());
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal.shade300,
                   shape: RoundedRectangleBorder(

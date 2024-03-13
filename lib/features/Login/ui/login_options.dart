@@ -15,26 +15,45 @@ class LoginRegisterOptionPage extends StatefulWidget {
 }
 
 class _LoginRegisterOptionPageState extends State<LoginRegisterOptionPage> {
+  final LoginBloc loginBloc = LoginBloc();
+  @override
+  void initState() {
+    loginBloc.add(LoginInitialEvent());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginBloc, LoginState>(
+      bloc: loginBloc,
+      listenWhen: (previous, current) => current is LoginActionState,
+      buildWhen: (previous, current) => current is! LoginActionState,
       listener: (context, state) {
         // TODO: implement listener
       },
       builder: (context, state) {
-        return Container(
-          alignment: Alignment.center,
-          color: Colors.white,
-          width: double.infinity,
-          height: double.infinity,
-          child: SizedBox(
-            height: 80.w,
-            width: 80.w,
-            child: CircularProgressIndicator(
-              color: Colors.teal.shade300,
-            ),
-          ),
-        );
+        switch (state.runtimeType) {
+          case LoginSuccessLoadedState:
+            return OptionPage(loginBloc: loginBloc,);
+          case LoginOptionPageToLoginPageNavigateEvent:
+            return LoginPage();
+          case LoginOptionPageToRegisterPageNavigateEvent:
+            return RegisterPage(loginBloc: loginBloc);
+          default:
+            return Container(
+              alignment: Alignment.center,
+              color: Colors.white,
+              width: double.infinity,
+              height: double.infinity,
+              child: SizedBox(
+                height: 80.w,
+                width: 80.w,
+                child: CircularProgressIndicator(
+                  color: Colors.teal.shade300,
+                ),
+              ),
+            );
+        }
       },
     );
   }
