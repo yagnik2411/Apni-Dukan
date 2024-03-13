@@ -33,14 +33,21 @@ class OptionPage extends StatelessWidget {
                       offset: Offset(0, 5),
                     ),
                   ]),
-              child: Text(
-                "Welcome To\nApni Dukan",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 35.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.teal.shade300,
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset("assets/logo.png",height: 200.w, width: 200.w,),
+                  Text(
+                    "Apni Dukan",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 35.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.teal.shade300,
+                    ),
+                  ),
+                ],
               ),
             ),
             200.verticalSpace,
