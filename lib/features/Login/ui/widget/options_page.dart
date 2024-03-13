@@ -56,7 +56,7 @@ class OptionPage extends StatelessWidget {
               height: 50.h,
               child: ElevatedButton(
                 onPressed: () {
-                  loginBloc.add(LoginLoginButtonClickedEvent());
+                  loginBloc.add(LoginOptionPageLoginButtonClickedEvent());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal.shade300,
@@ -80,7 +80,7 @@ class OptionPage extends StatelessWidget {
               height: 50.h,
               child: ElevatedButton(
                 onPressed: () {
-                   loginBloc.add(LoginRegisterButtonClickedEvent());
+                   loginBloc.add(LoginOptionPageRegisterButtonClickedEvent());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal.shade300,

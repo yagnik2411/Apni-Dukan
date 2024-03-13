@@ -2,6 +2,7 @@ import 'package:apni_dukan/features/Login/bloc/login_bloc.dart';
 import 'package:apni_dukan/features/Login/ui/widget/login_page.dart';
 import 'package:apni_dukan/features/Login/ui/widget/options_page.dart';
 import 'package:apni_dukan/features/Login/ui/widget/register_page.dart';
+import 'package:apni_dukan/features/home/ui/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,15 +30,31 @@ class _LoginRegisterOptionPageState extends State<LoginRegisterOptionPage> {
       listenWhen: (previous, current) => current is LoginActionState,
       buildWhen: (previous, current) => current is! LoginActionState,
       listener: (context, state) {
-        // TODO: implement listener
+        switch (state.runtimeType) {
+          case LoginSignUpState:
+            final successState = state as LoginSignUpState;
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(successState.message)));
+            break;
+          case LoginRegisterPageToHomePageNavigateState:
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Home(),
+                ));
+          default:
+          
+        }
       },
       builder: (context, state) {
         switch (state.runtimeType) {
           case LoginSuccessLoadedState:
-            return OptionPage(loginBloc: loginBloc,);
-          case LoginOptionPageToLoginPageNavigateEvent:
+            return OptionPage(
+              loginBloc: loginBloc,
+            );
+          case LoginOptionPageToLoginPageNavigateState:
             return LoginPage(loginBloc: loginBloc);
-          case LoginOptionPageToRegisterPageNavigateEvent:
+          case LoginOptionPageToRegisterPageNavigateState:
             return RegisterPage(loginBloc: loginBloc);
           default:
             return Container(

@@ -9,6 +9,14 @@ final class LoginInitial extends LoginState {}
 
 final class LoginSuccessLoadedState extends LoginState {}
 
-final class LoginOptionPageToLoginPageNavigateEvent extends LoginState {}
+final class LoginOptionPageToLoginPageNavigateState extends LoginState {}
 
-final class LoginOptionPageToRegisterPageNavigateEvent extends LoginState {}
+final class LoginOptionPageToRegisterPageNavigateState extends LoginState {}
+
+final class LoginSignUpState extends LoginActionState {
+  final String message;
+
+  LoginSignUpState({required this.message});
+}
+
+final class LoginRegisterPageToHomePageNavigateState extends LoginActionState {}

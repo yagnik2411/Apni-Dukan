@@ -5,6 +5,13 @@ sealed class LoginEvent {}
 
 class LoginInitialEvent extends LoginEvent {}
 
-class LoginLoginButtonClickedEvent extends LoginEvent {}
+class LoginOptionPageLoginButtonClickedEvent extends LoginEvent {}
 
-class LoginRegisterButtonClickedEvent extends LoginEvent {}
+class LoginOptionPageRegisterButtonClickedEvent extends LoginEvent {}
+
+class LoginLoginPageLoginButtonClickedEvent extends LoginEvent {
+  final String emailAddress;
+  final String password;
+
+  LoginLoginPageLoginButtonClickedEvent({required this.emailAddress, required this.password});
+}
