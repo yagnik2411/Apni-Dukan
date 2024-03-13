@@ -36,7 +36,7 @@ class _LoginRegisterOptionPageState extends State<LoginRegisterOptionPage> {
           case LoginSuccessLoadedState:
             return OptionPage(loginBloc: loginBloc,);
           case LoginOptionPageToLoginPageNavigateEvent:
-            return LoginPage();
+            return LoginPage(loginBloc: loginBloc);
           case LoginOptionPageToRegisterPageNavigateEvent:
             return RegisterPage(loginBloc: loginBloc);
           default:

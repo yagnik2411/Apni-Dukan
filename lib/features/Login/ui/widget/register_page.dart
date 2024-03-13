@@ -12,18 +12,31 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      onPopInvoked: (didpop) async {
-        loginBloc.add(LoginInitialEvent());
+      canPop: false,
+      // onPopInvoked: (didpop) async {
+      //   loginBloc.add(LoginInitialEvent());
         
-      },
+      // },
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            onPressed: () {
+              loginBloc.add(LoginInitialEvent());
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.teal,
+            ),
+          ),
+        ),
         backgroundColor: Colors.teal.shade50,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              100.verticalSpace,
+              
               Container(
                 alignment: Alignment.center,
                 width: 220.w,
