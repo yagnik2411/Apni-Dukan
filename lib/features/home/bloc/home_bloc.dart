@@ -20,7 +20,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeProductCartButtonClickedEvent>(homeProductCartButtonClickedEvent);
     on<HomeWishlistButtonNavigateEvent>(homeWishlistButtonNavigateEvent);
     on<HomeCartButtonNavigateEvent>(homeCartButtonNavigateEvent);
-    
+    on<HomeProfileButtonNavigateEvent>(homeProfileButtonNavigateEvent);
   }
   FutureOr<void> homeInitialEvent(
       HomeInitialEvent event, Emitter<HomeState> emit) async {
@@ -71,5 +71,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         clickedProduct: event.clickedProduct));
   }
 
-  
+  FutureOr<void> homeProfileButtonNavigateEvent(HomeProfileButtonNavigateEvent event, Emitter<HomeState> emit) {
+    emit(HomeNavigateToProfilePageActionState());
+  }
 }

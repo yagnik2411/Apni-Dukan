@@ -2,6 +2,7 @@ import 'package:apni_dukan/features/cart/ui/cart.dart';
 import 'package:apni_dukan/features/home/bloc/home_bloc.dart';
 import 'package:apni_dukan/features/productDetailPage/ui/product_details_page.dart';
 import 'package:apni_dukan/features/home/ui/product_tile.dart';
+import 'package:apni_dukan/features/profile/ui/profile_page.dart';
 import 'package:apni_dukan/features/wishlist/ui/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,8 +49,12 @@ class _HomeState extends State<Home> {
               MaterialPageRoute(
                   builder: (context) => ProductDetailsPage(
                         product: successState.clickedProduct,
-                        
                       )));
+        } else if(state is HomeNavigateToProfilePageActionState){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const ProfilePage()));
         }
       },
       builder: (context, state) {
@@ -64,9 +69,17 @@ class _HomeState extends State<Home> {
           case HomeLoadedSuccessState:
             final successState = state as HomeLoadedSuccessState;
             return Scaffold(
-              
+              floatingActionButton: CircleAvatar(
+                radius: 30,
+                backgroundColor: Colors.teal,
+                child: IconButton(
+                    onPressed: () {
+                      homeBloc.add(HomeCartButtonNavigateEvent());
+                    },
+                    icon: const Icon(Icons.shopping_cart_outlined,color: Colors.white,)),
+              ),
               appBar: AppBar(
-              automaticallyImplyLeading: false,  
+                automaticallyImplyLeading: false,
                 title: const Text('Apni Dukan'),
                 actions: [
                   IconButton(
@@ -76,9 +89,9 @@ class _HomeState extends State<Home> {
                       icon: const Icon(Icons.favorite_border_outlined)),
                   IconButton(
                       onPressed: () {
-                        homeBloc.add(HomeCartButtonNavigateEvent());
+                        homeBloc.add(HomeProfileButtonNavigateEvent());
                       },
-                      icon: const Icon(Icons.shopping_cart_outlined)),
+                      icon: const Icon(Icons.person_outline_rounded)),
                 ],
               ),
               body: ListView.builder(

@@ -21,16 +21,14 @@ class HomeNavigateToWishlistPageActionState extends HomeActionState {}
 
 class HomeNavigateToCartPageActionState extends HomeActionState {}
 
+class HomeNavigateToProfilePageActionState extends HomeActionState {}
+
 class HomeNavigateToProductDetailsPageActionState extends HomeActionState {
-   final ProductDataModel clickedProduct;
+  final ProductDataModel clickedProduct;
 
   HomeNavigateToProductDetailsPageActionState({required this.clickedProduct});
 }
 
-class HomeProductWhitelistedActionState extends HomeActionState{}
+class HomeProductWhitelistedActionState extends HomeActionState {}
 
-class HomeProductCartAddedActionState extends HomeActionState{
-  
-}
-
-
+class HomeProductCartAddedActionState extends HomeActionState {}
