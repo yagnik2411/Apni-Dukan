@@ -1,3 +1,4 @@
+import 'package:apni_dukan/features/Login/model/user_model.dart';
 import 'package:apni_dukan/features/Login/ui/login_options.dart';
 import 'package:apni_dukan/features/home/ui/home.dart';
 import 'package:apni_dukan/firebase_options.dart';
@@ -12,6 +13,8 @@ Future<void> main() async {
   );
   runApp(const MyApp());
 }
+
+UserModel? globalUser=UserModel();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:apni_dukan/features/Login/firebase/authication.dart';
+import 'package:apni_dukan/firebase/authication.dart';
+import 'package:apni_dukan/firebase/cloud_firestore.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -40,8 +41,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       LoginRegisterPageRegisterButtonClickedEvent event,
       Emitter<LoginState> emit) async {
     String message = await firebaseSignUp(event.emailAddress, event.password);
+
     emit(LoginSignUpState(message: message));
     if (message == "Sign-up Successful") {
+      fireStoreCreateUser();
       emit(LoginRegisterPageToHomePageNavigateState());
     }
   }
@@ -50,8 +53,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       LoginLoginPageLoginButtonClickedEvent event,
       Emitter<LoginState> emit) async {
     String message = await firebaseSignIn(event.emailAddress, event.password);
+
     emit(LoginSignInState(message: message));
     if (message == "Sign-in Successful") {
+      fireStoreReadUser();
       emit(LoginLoginPageToHomePageNavigateState());
     }
   }

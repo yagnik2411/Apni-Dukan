@@ -1,4 +1,5 @@
 import 'package:apni_dukan/features/Login/bloc/login_bloc.dart';
+import 'package:apni_dukan/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -158,6 +159,7 @@ class LoginPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
+                        globalUser?.setEmailAddress(emailController.text);
                         loginBloc.add(LoginLoginPageLoginButtonClickedEvent(
                             emailAddress: emailController.text,
                             password: passwordController.text));

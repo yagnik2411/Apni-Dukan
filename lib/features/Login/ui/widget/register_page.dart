@@ -1,14 +1,17 @@
 import 'package:apni_dukan/features/Login/bloc/login_bloc.dart';
+import 'package:apni_dukan/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterPage extends StatelessWidget {
   final LoginBloc loginBloc;
-   RegisterPage({
+  RegisterPage({
     super.key,
     required this.loginBloc,
   });
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -65,7 +68,8 @@ class RegisterPage extends StatelessWidget {
                 100.verticalSpace,
                 Padding(
                   padding: EdgeInsets.all(10.0.w),
-                  child: TextField(
+                  child: TextFormField(
+                    controller: firstNameController,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -78,7 +82,8 @@ class RegisterPage extends StatelessWidget {
                         padding: EdgeInsets.all(10.sp),
                         decoration: const BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(30))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
                         child: Text(
                           "First Name",
                           style: TextStyle(
@@ -94,11 +99,19 @@ class RegisterPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter an FirstName';
+                      }
+
+                      return null;
+                    },
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(10.0.w),
-                  child: TextField(
+                  child: TextFormField(
+                    controller: lastNameController,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -111,7 +124,8 @@ class RegisterPage extends StatelessWidget {
                         padding: EdgeInsets.all(10.sp),
                         decoration: const BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(30))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
                         child: Text(
                           "Last Name",
                           style: TextStyle(
@@ -127,6 +141,13 @@ class RegisterPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter an LastName';
+                      }
+
+                      return null;
+                    },
                   ),
                 ),
                 Padding(
@@ -145,7 +166,8 @@ class RegisterPage extends StatelessWidget {
                         padding: EdgeInsets.all(10.sp),
                         decoration: const BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(30))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
                         child: Text(
                           "Email",
                           style: TextStyle(
@@ -161,7 +183,7 @@ class RegisterPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                     validator: (value) {
+                    validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter an email';
                       }
@@ -189,7 +211,8 @@ class RegisterPage extends StatelessWidget {
                         padding: EdgeInsets.all(10.sp),
                         decoration: const BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(30))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
                         child: Text(
                           "Password",
                           style: TextStyle(
@@ -232,7 +255,8 @@ class RegisterPage extends StatelessWidget {
                         padding: EdgeInsets.all(10.sp),
                         decoration: const BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(30))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
                         child: Text(
                           "Re-enter Password",
                           style: TextStyle(
@@ -269,10 +293,16 @@ class RegisterPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
+                        globalUser?.setAllParameters(
+                          firstName: firstNameController.text,
+                          lastName: lastNameController.text,
+                          emailAddress: emailController.text,
+                        );
                         loginBloc.add(
-                            LoginRegisterPageRegisterButtonClickedEvent(emailAddress: emailController.text,password: passwordController.text));
+                            LoginRegisterPageRegisterButtonClickedEvent(
+                                emailAddress: emailController.text,
+                                password: passwordController.text));
                       }
-                      
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
