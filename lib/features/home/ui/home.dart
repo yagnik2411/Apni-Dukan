@@ -64,7 +64,9 @@ class _HomeState extends State<Home> {
           case HomeLoadedSuccessState:
             final successState = state as HomeLoadedSuccessState;
             return Scaffold(
+              
               appBar: AppBar(
+              automaticallyImplyLeading: false,  
                 title: const Text('Apni Dukan'),
                 actions: [
                   IconButton(

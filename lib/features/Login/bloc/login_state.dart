@@ -19,4 +19,15 @@ final class LoginSignUpState extends LoginActionState {
   LoginSignUpState({required this.message});
 }
 
-final class LoginRegisterPageToHomePageNavigateState extends LoginActionState {}
+final class LoginSignInState extends LoginActionState {
+  final String message;
+
+  LoginSignInState({required this.message});
+}
+
+final class LoginRegisterPageToHomePageNavigateState extends LoginActionState {
+  
+}
+final class LoginLoginPageToHomePageNavigateState extends LoginActionState {
+
+}

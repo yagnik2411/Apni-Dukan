@@ -269,7 +269,8 @@ class RegisterPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        loginBloc.add(LoginLoginPageLoginButtonClickedEvent(emailAddress: emailController.text,password: passwordController.text));
+                        loginBloc.add(
+                            LoginRegisterPageRegisterButtonClickedEvent(emailAddress: emailController.text,password: passwordController.text));
                       }
                       
                     },

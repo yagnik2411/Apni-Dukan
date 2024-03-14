@@ -14,6 +14,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         loginOptionPageLoginButtonClickedEvent);
     on<LoginOptionPageRegisterButtonClickedEvent>(
         loginOptionPageRegisterButtonClickedEvent);
+    on<LoginRegisterPageRegisterButtonClickedEvent>(
+        loginRegisterPageRegisterButtonClickedEvent);
     on<LoginLoginPageLoginButtonClickedEvent>(
         loginLoginPageLoginButtonClickedEvent);
   }
@@ -34,13 +36,23 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(LoginOptionPageToRegisterPageNavigateState());
   }
 
-  FutureOr<void> loginLoginPageLoginButtonClickedEvent(
-      LoginLoginPageLoginButtonClickedEvent event,
+  FutureOr<void> loginRegisterPageRegisterButtonClickedEvent(
+      LoginRegisterPageRegisterButtonClickedEvent event,
       Emitter<LoginState> emit) async {
     String message = await firebaseSignUp(event.emailAddress, event.password);
     emit(LoginSignUpState(message: message));
     if (message == "Sign-up Successful") {
       emit(LoginRegisterPageToHomePageNavigateState());
+    }
+  }
+
+  FutureOr<void> loginLoginPageLoginButtonClickedEvent(
+      LoginLoginPageLoginButtonClickedEvent event,
+      Emitter<LoginState> emit) async {
+    String message = await firebaseSignIn(event.emailAddress, event.password);
+    emit(LoginSignInState(message: message));
+    if (message == "Sign-in Successful") {
+      emit(LoginLoginPageToHomePageNavigateState());
     }
   }
 }

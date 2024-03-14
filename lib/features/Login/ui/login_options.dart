@@ -40,10 +40,22 @@ class _LoginRegisterOptionPageState extends State<LoginRegisterOptionPage> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Home(),
+                  builder: (context) => const Home(),
                 ));
+            break;
+          case LoginSignInState:
+            final successState = state as LoginSignInState;
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(successState.message)));
+            break;
+          case LoginLoginPageToHomePageNavigateState:
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Home(),
+                ));
+
           default:
-          
         }
       },
       builder: (context, state) {
