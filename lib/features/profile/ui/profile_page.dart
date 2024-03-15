@@ -1,61 +1,68 @@
+import 'package:apni_dukan/features/Login/ui/login_options.dart';
+import 'package:apni_dukan/features/profile/bloc/profile_bloc.dart';
+import 'package:apni_dukan/features/profile/ui/widget/add_address.dart';
+import 'package:apni_dukan/features/profile/ui/widget/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:apni_dukan/main.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  final ProfileBloc profileBloc = ProfileBloc();
+
+  @override
+  void initState() {
+    super.initState();
+    profileBloc.add(ProfileSuccessLoadedEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
-    String fullName =
-        "${globalUser?.firstName ?? ''} ${globalUser?.lastName ?? ''}";
+    return BlocConsumer<ProfileBloc, ProfileState>(
+      bloc: profileBloc,
+      listenWhen: (previous, current) => current is ProfileActionState,
+      buildWhen: (previous, current) => current is! ProfileActionState,
+      listener: (context, state) {
+        switch (state.runtimeType) {
+          case ProfileProfilePageToLoginOptionPageNavigateState:
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const LoginRegisterOptionPage()));
+            break;
+          case ProfileSignOutState:
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text((state as ProfileSignOutState).message),
+              ),
+            );
+            break;
+          case ProfileAddressPageToProfilePageNavigateState:
+           Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>  ProfilePage()));
+            break;
+            
+          default:
+        }
+      },
+      builder: (context, state) {
+        switch (state.runtimeType) {
+          case ProfileInitial:
+            return Profile(profileBloc: profileBloc);
+          case ProfileProfilePageToAddressPageNavigateState:
+            return AddAddress(profileBloc: profileBloc);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Profile"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Card(
-              color: Colors.teal.shade50,
-              child: Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: SizedBox(
-                    height: 100.0.h,
-                    width: double.maxFinite.w,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.teal.shade300,
-                          radius: 30.0.h,
-                          child: Icon(
-                            Icons.person,
-                            size: 40.0.h,
-                            color: Colors.white,
-                          ),
-                        ),
-                        20.horizontalSpace,
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("$fullName", style: TextStyle(fontSize: 25.sp)),
-                            Text("${globalUser?.emailAddress}",
-                                style: TextStyle(fontSize: 16.sp)),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )),
-            ),
-          ],
-        ),
-      ),
+          default:
+            return const CircularProgressIndicator();
+        }
+      },
     );
   }
 }

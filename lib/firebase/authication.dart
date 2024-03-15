@@ -49,3 +49,8 @@ Future<String> firebaseSignIn(String emailAddress, String password) async {
     return "Sign-in failed";
   }
 }
+
+Future<String> firebaseSignOut() async {
+  await FirebaseAuth.instance.signOut();
+  return "Sign-out Successful";
+}

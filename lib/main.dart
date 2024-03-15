@@ -1,4 +1,5 @@
-import 'package:apni_dukan/features/Login/model/user_model.dart';
+import 'package:apni_dukan/model/address_model.dart';
+import 'package:apni_dukan/model/user_model.dart';
 import 'package:apni_dukan/features/Login/ui/login_options.dart';
 import 'package:apni_dukan/features/home/ui/home.dart';
 import 'package:apni_dukan/firebase_options.dart';
@@ -15,6 +16,8 @@ Future<void> main() async {
 }
 
 UserModel? globalUser=UserModel();
+AddressModel? globalAddress=AddressModel();
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

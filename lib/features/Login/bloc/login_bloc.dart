@@ -56,7 +56,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     emit(LoginSignInState(message: message));
     if (message == "Sign-in Successful") {
-      fireStoreReadUser();
+     await fireStoreReadUser();
+     await fireStoreReadAddress();
       emit(LoginLoginPageToHomePageNavigateState());
     }
   }

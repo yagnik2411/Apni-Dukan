@@ -14,6 +14,7 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -148,6 +149,58 @@ class RegisterPage extends StatelessWidget {
 
                       return null;
                     },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10.0.w),
+                  child: TextFormField(
+                    controller: phoneNumberController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: "1234567890",
+                      hintStyle: TextStyle(
+                          color: Colors.teal.shade100,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w400),
+                      label: Container(
+                        padding: EdgeInsets.all(10.sp),
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30))),
+                        child: Text(
+                          "Phone Number",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter a phone number';
+                      }
+
+                      // Regular expression to match a typical phone number pattern
+                      // You may need to adjust this pattern according to your specific requirements
+                      RegExp phoneRegex = RegExp(
+                          r'^\d{10}$'); // Assumes a 10-digit phone number format
+
+                      if (!phoneRegex.hasMatch(value)) {
+                        return 'Please enter a valid phone number'; // You can customize this error message
+                      }
+
+                      return null;
+                    },
+
                   ),
                 ),
                 Padding(
@@ -297,6 +350,7 @@ class RegisterPage extends StatelessWidget {
                           firstName: firstNameController.text,
                           lastName: lastNameController.text,
                           emailAddress: emailController.text,
+                          phoneNumber: phoneNumberController.text,
                         );
                         loginBloc.add(
                             LoginRegisterPageRegisterButtonClickedEvent(

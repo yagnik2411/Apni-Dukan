@@ -37,7 +37,7 @@ class _LoginRegisterOptionPageState extends State<LoginRegisterOptionPage> {
                 .showSnackBar(SnackBar(content: Text(successState.message)));
             break;
           case LoginRegisterPageToHomePageNavigateState:
-            Navigator.push(
+            Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const Home(),
@@ -49,7 +49,7 @@ class _LoginRegisterOptionPageState extends State<LoginRegisterOptionPage> {
                 .showSnackBar(SnackBar(content: Text(successState.message)));
             break;
           case LoginLoginPageToHomePageNavigateState:
-            Navigator.push(
+            Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const Home(),
