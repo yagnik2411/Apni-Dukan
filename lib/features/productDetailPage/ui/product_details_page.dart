@@ -322,19 +322,27 @@ class BottomBar extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 50.h,
-                    width: 170.w,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(5.h)),
-                        color: Colors.teal.shade300),
-                    child: Center(
-                      child: Text(
-                        "Buy Now",
-                        style: TextStyle(
-                            fontSize: 18.w,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                  GestureDetector(
+                    onTap: () {
+                      productDetailBloc.add(
+                          ProductDetailedPageBuyNowButtonClickedEvent(
+                              ));
+                    
+                    },
+                    child: Container(
+                      height: 50.h,
+                      width: 170.w,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(5.h)),
+                          color: Colors.teal.shade300),
+                      child: Center(
+                        child: Text(
+                          "Buy Now",
+                          style: TextStyle(
+                              fontSize: 18.w,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   )
