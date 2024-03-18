@@ -11,3 +11,6 @@ class ProductDetailedPageCartButtonClickedEvent extends ProductDetailEvent {
 
   ProductDetailedPageCartButtonClickedEvent({required this.clickedProduct});
 }
+class ProductDetailedPageBuyNowButtonClickedEvent extends ProductDetailEvent {
+  
+}

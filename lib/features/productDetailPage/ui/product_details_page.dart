@@ -219,19 +219,26 @@ class BottomBar extends StatelessWidget {
       listenWhen: (previous, current) => current is ProductDetailActionState,
       buildWhen: (previous, current) => current is! ProductDetailActionState,
       listener: (context, state) {
-        if (state is ProductDetailsPageAddToCartActionState) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Item Added in Cart")));
-        } else if (state is ProductDetailsPageToCartPageNavigateActionState) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CartPage(),
-              ));
+        switch (state.runtimeType) {
+          case ProductDetailsPageAddToCartActionState:
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Item Added in Cart")));
+            break;
+          case ProductDetailsPageToCartPageNavigateActionState:
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CartPage(),
+                ));
+            break;
+          case ProductDetailsPageBuyNowActionState:
+            final successState = state as ProductDetailsPageBuyNowActionState;
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(successState.message)));
+            break;
         }
       },
       builder: (context, state) {
-        print("state is ${state.runtimeType}");
         switch (state.runtimeType) {
           case ProductDetailsPageAddToCartState:
             return SizedBox(
@@ -334,7 +341,8 @@ class BottomBar extends StatelessWidget {
                 ],
               ),
             );
-          default: return const SizedBox();
+          default:
+            return const SizedBox();
         }
       },
     );

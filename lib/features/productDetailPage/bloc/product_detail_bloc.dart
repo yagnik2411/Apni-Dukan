@@ -14,6 +14,8 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
         productDetailedPageCartButtonClickedEvent);
     on<ProductDetailedPageToCartPageNavigateButtonClickedEvent>(
         productDetailedPageToCartPageNavigateButtonClickedEvent);
+    on<ProductDetailedPageBuyNowButtonClickedEvent>(
+        productDetailedPageBuyNowButtonClickedEvent);
   }
   FutureOr<void> productDetailedPageCartButtonClickedEvent(
       ProductDetailedPageCartButtonClickedEvent event,
@@ -29,5 +31,9 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
       ProductDetailedPageToCartPageNavigateButtonClickedEvent event,
       Emitter<ProductDetailState> emit) {
     emit(ProductDetailsPageToCartPageNavigateActionState());
+  }
+
+  FutureOr<void> productDetailedPageBuyNowButtonClickedEvent(ProductDetailedPageBuyNowButtonClickedEvent event, Emitter<ProductDetailState> emit) {
+  emit(ProductDetailsPageBuyNowActionState(message: "Buying Option Coming soon"));
   }
 }

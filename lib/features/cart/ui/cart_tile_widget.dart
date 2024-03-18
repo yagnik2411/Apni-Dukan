@@ -50,44 +50,22 @@ class CartTileWidget extends StatelessWidget {
               "\$${product.price}",
               style: TextStyle(fontSize: 25.h, fontWeight: FontWeight.bold),
             ),
-            Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black12,
-                            spreadRadius: 2.h,
-                            blurRadius: 2.h)
-                      ],
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(25.h))),
-                  child: IconButton(
-                      onPressed: () {
-                        // homeBloc.add(HomeProductWishlistButtonClickedEvent(
-                        //     clickedProduct: product));
-                      },
-                      icon: const Icon(Icons.favorite_border_outlined)),
-                ),
-                20.horizontalSpace,
-                Container(
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black12,
-                            spreadRadius: 2.h,
-                            blurRadius: 2.h)
-                      ],
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(25.h))),
-                  child: IconButton(
-                      onPressed: () {
-                        cartBloc.add(CartRemoveFromCartEvent(
-                            product: product));
-                      },
-                      icon: const Icon(Icons.shopping_cart_outlined)),
-                ),
-              ],
+            Container(
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12,
+                        spreadRadius: 2.h,
+                        blurRadius: 2.h)
+                  ],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(25.h))),
+              child: IconButton(
+                  onPressed: () {
+                    cartBloc.add(CartRemoveFromCartEvent(
+                        product: product));
+                  },
+                  icon: const Icon(Icons.remove_shopping_cart_outlined)),
             )
           ],
         ),

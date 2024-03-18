@@ -11,6 +11,13 @@ class ProductDetailsPageAddToCartState extends  ProductDetailState {}
 
 class ProductDetailsPageAddToCartActionState extends ProductDetailActionState {}
 
-class ProductDetailsPageBuyNowActionState extends ProductDetailActionState {}
+class ProductDetailsPageBuyNowActionState extends ProductDetailActionState {
+  final String message;
+
+  ProductDetailsPageBuyNowActionState({required this.message});
+
+}
 
 class ProductDetailsPageToCartPageNavigateActionState extends ProductDetailActionState {}
+
+
